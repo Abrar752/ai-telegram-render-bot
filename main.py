@@ -1,6 +1,7 @@
 import logging
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
+import os
 
 # 🔧 লগ কনফিগার
 logging.basicConfig(
@@ -18,12 +19,14 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # 🤖 অ্যাপ রান
 if __name__ == '__main__':
-    import os
     TOKEN = os.getenv("7871717451:AAFgWQZt0yiiDKfGcW9D3j_IGaOSomjvLGE")  # 🛡️ নিরাপদভাবে টোকেন রাখার জন্য
+
+    if not TOKEN:
+        raise ValueError("TELEGRAM_BOT_TOKEN environment variable not set")
 
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
-    print("🤖 বট চালু হচ্ছে...")
+    logging.info("🤖 বট চালু হচ্ছে...")
     app.run_polling()
