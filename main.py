@@ -19,7 +19,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # 🤖 অ্যাপ রান
 if __name__ == '__main__':
-    TOKEN = os.getenv("7871717451:AAFgWQZt0yiiDKfGcW9D3j_IGaOSomjvLGE")  # 🛡️ নিরাপদভাবে টোকেন রাখার জন্য
+    TOKEN = os.getenv("bot_token")  # 🛡️ নিরাপদভাবে টোকেন রাখার জন্য
 
     if not TOKEN:
         raise ValueError("TELEGRAM_BOT_TOKEN environment variable not set")
